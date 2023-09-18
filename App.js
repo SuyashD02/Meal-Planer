@@ -22,6 +22,7 @@ if(Gender.value ==='Male'){
 if(bmr){
     activityBmr();
 }
+getMealAPIResponse();
 }
 function womenBmr() {
     
@@ -61,6 +62,7 @@ function activityBmr() {
     console.log(finalBmr);
 }
 
+function getMealAPIResponse() {
   fetch(mealApi)
   .then(response => {
     if (!response.ok) {
@@ -89,6 +91,7 @@ function activityBmr() {
   .catch(error => {
     console.error('Fetch error:', error);
   });
+}
 
 //fetch(mealApi)
 //.then(response=> response.json())
