@@ -85,12 +85,27 @@ function getMealAPIResponse() {
         lunch = item['lunch'];
         dinner = item['dinner'];
         console.log(lunch);
+        return;
       }
     });
   })
   .catch(error => {
     console.error('Fetch error:', error);
   });
+}
+let lunchname;
+let lunchphoto;
+function processLunch() {
+    lunchname = lunch["title"];
+    lunchphoto = lunch["image"];
+}
+
+function processBreakfast() {
+
+}
+
+function processDinner() {
+
 }
 
 //fetch(mealApi)
