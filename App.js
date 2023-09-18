@@ -58,14 +58,32 @@ function activityBmr() {
     console.log(finalBmr);
 }
 
+let mealData;
 fetch(mealApi)
-.then(response=> response.json())
-.then(data=> console.log(data))
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json(); 
+  })
+  .then(data => {
+    mealData = data;
+    console.log(mealData);
+  })
+  .catch(error => {
+    console.error('Fetch error:', error);
+  });
 
 
-fetch(recipeApi)
-.then(response2=> response2.json())
-.then(data2=> console.log(data2))
+
+//fetch(mealApi)
+//.then(response=> response.json())
+//.then(data=> console.log(data))
+
+
+//fetch(recipeApi)
+//.then(response2=> response2.json())
+//.then(data2=> console.log(data2))
 
 
 
