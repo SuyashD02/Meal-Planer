@@ -85,6 +85,7 @@ function getMealAPIResponse() {
         lunch = item['lunch'];
         dinner = item['dinner'];
         console.log(lunch);
+        
       }
     });
   })
