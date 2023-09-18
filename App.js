@@ -61,8 +61,7 @@ function activityBmr() {
     console.log(finalBmr);
 }
 
-let mealData;
-fetch(mealApi)
+  fetch(mealApi)
   .then(response => {
     if (!response.ok) {
       throw new Error('Network response was not ok');
@@ -70,28 +69,26 @@ fetch(mealApi)
     return response.json(); 
   })
   .then(data => {
-    mealData = data;
-    console.log("mealapi="+mealData);
+    mealData = data; // Remove .json() here
+    console.log("mealapi=" + mealData);
+
+    mealData.forEach(item => {
+      console.log(item); 
+      var min = item['min'];
+      var max = item['max'];
+      console.log("min = " + min);
+      console.log("max = " + max);
+      if (finalBmr < max && finalBmr > min) {
+        breakfast = item['breakfast'];
+        lunch = item['lunch'];
+        dinner = item['dinner'];
+        console.log(lunch);
+      }
+    });
   })
   .catch(error => {
     console.error('Fetch error:', error);
   });
-
-  mealData.forEach(item => {
-    console.log(item); 
-    var min = item['min'];
-    var max = item['max'];
-    console.log("min = "+min);
-    console.log("max = "+max);
-    if(finalBmr < max && finalBmr > min) {
-      breakfast = item['breakfast'];
-      lunch = item['lunch'];
-      dinner = item['dinner'];
-      console.log(lunch);
-
-    }
-  });
-
 
 //fetch(mealApi)
 //.then(response=> response.json())
