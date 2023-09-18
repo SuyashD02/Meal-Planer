@@ -9,6 +9,9 @@ const Gender = document.getElementById("gender");
 const Activity =document.querySelector(".activity");
 let bmr;
 let finalBmr;
+let breakfast;
+let lunch;
+let dinner;
 
 function cagender(){
 if(Gender.value ==='Male'){
@@ -68,12 +71,26 @@ fetch(mealApi)
   })
   .then(data => {
     mealData = data;
-    console.log(mealData);
+    console.log("mealapi="+mealData);
   })
   .catch(error => {
     console.error('Fetch error:', error);
   });
 
+  mealData.forEach(item => {
+    console.log(item); 
+    var min = item['min'];
+    var max = item['max'];
+    console.log("min = "+min);
+    console.log("max = "+max);
+    if(finalBmr < max && finalBmr > min) {
+      breakfast = item['breakfast'];
+      lunch = item['lunch'];
+      dinner = item['dinner'];
+      console.log(lunch);
+
+    }
+  });
 
 
 //fetch(mealApi)
