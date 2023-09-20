@@ -85,13 +85,33 @@ function getMealAPIResponse() {
         lunch = item['lunch'];
         dinner = item['dinner'];
         console.log(lunch);
-        
+        console.log(dinner);
+        console.log(breakfast);
+        return;
       }
     });
   })
   .catch(error => {
     console.error('Fetch error:', error);
   });
+}
+let lunchname;
+let lunchphoto;
+function processLunch() {
+    lunchname = lunch["title"];
+    lunchphoto = lunch["image"];
+}
+let breakfastname;
+let breakfastphoto;
+function processBreakfast() {
+  breakfastname = breakfast["title"];
+  breakfastphoto = breakfast["image"];
+}
+let dinnerName;
+let dinnerphoto;
+function processDinner() {
+  dinnerName = dinner["title"];
+  dinnerphoto = dinner["image"];
 }
 
 //fetch(mealApi)
