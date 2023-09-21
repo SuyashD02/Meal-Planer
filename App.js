@@ -135,21 +135,28 @@ function processDinner() {
 //console.log(lunchname);
 
 
-
-
-function getRecipe(){
-fetch(recipeApi)
-.then(response2=> response2.json())
-.then(data2=> {
-  recipeData = data2;
- recipeData.forEach(recipeItem => {
-  let lunchIngredient;
+let lunchIngredient;
     let lunchStep;
     let breakfastIngredient;
     let breakfastStep;
     let dinnerIngredient;
     let dinnerStep;
+    let recipeData = null;
+
+async function getRecipe(){
+await fetch(recipeApi)
+.then(response2=> response2.json())
+.then(data2=> {
+  recipeData = data2;
+});
+}
+
+async function getBreakFastRecipe() {
+  if(recipeData == null) { await getRecipe();}
+  recipeData.forEach(recipeItem => {
+    console.log("breakfastname "+breakfastname);
     if (breakfastname == recipeItem.title){
+      console.log("item name"+recipeItem.title);
       breakfastIngredient= recipeItem.ingredients;
       breakfastStep  = recipeItem.steps;
 
@@ -162,6 +169,55 @@ fetch(recipeApi)
       const bflistStep = document.createElement("li");
       bflistStep.textContent = breakfastStep;
       bfulStep.appendChild(bflistStep);
+    }
+  });
+}
+
+function getLunchRecipe() {
+  if(recipeData == null) { getRecipe();}
+  
+  recipeData.forEach(recipeItem => {
+    console.log("lunchname "+lunchname);
+    if (lunchname == recipeItem.title){
+      lunchIngredient= recipeItem.ingredients;
+      lunchStep  = recipeItem.steps;
+
+      const lhulList =document.getElementById("recipeList");
+      const lhlistItem = document.createElement("li");
+      lhlistItem.textContent = lunchIngredient;
+      lhulList.appendChild(lhlistItem);
+
+      const lhulStep =document.getElementById("recipeStep");
+      const lhlistStep = document.createElement("li");
+      lhlistStep.textContent = lunchStep;
+      lhulStep.appendChild(lhlistStep);
+      return;
+      }
+  });
+
+}
+
+function getDinnerRecipe() {
+
+}
+/*
+ recipeData.forEach(recipeItem => {
+    console.log("breakfastname "+breakfastname);
+    if (breakfastname == recipeItem.title){
+      console.log("item name"+recipeItem.title);
+      breakfastIngredient= recipeItem.ingredients;
+      breakfastStep  = recipeItem.steps;
+
+      const bfulList =document.getElementById("recipeList");
+      const bflistItem = document.createElement("li");
+      bflistItem.textContent = breakfastIngredient;
+      bfulList.appendChild(bflistItem);
+
+      const bfulStep =document.getElementById("recipeStep");
+      const bflistStep = document.createElement("li");
+      bflistStep.textContent = breakfastStep;
+      bfulStep.appendChild(bflistStep);
+      break;
     }else if (lunchname == recipeItem.title){
       lunchIngredient= recipeItem.ingredients;
       lunchStep  = recipeItem.steps;
@@ -175,6 +231,7 @@ fetch(recipeApi)
       const lhlistStep = document.createElement("li");
       lhlistStep.textContent = lunchStep;
       lhulStep.appendChild(lhlistStep);
+      return;
     }else if (dinnerName == recipeItem.title){
       dinnerIngredient= recipeItem.ingredients;
       dinnerStep  = recipeItem.steps;
@@ -188,13 +245,15 @@ fetch(recipeApi)
       const dnlistStep = document.createElement("li");
       dnlistStep.textContent = dinnerStep;
       dnulStep.appendChild(dnlistStep);
+      return;
     }
-    console.log(data2);
- });
+    //console.log(data2);
+ 
 })
-
-
 }
+*/
+
+
 
 
 
@@ -274,6 +333,6 @@ fetch(recipeApi)
       console.error('Error generating meal plan:', error);
     }
   }
+
+
 */
-
-
