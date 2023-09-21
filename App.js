@@ -13,6 +13,7 @@ let breakfast;
 let lunch;
 let dinner;
 
+
 function cagender(){
 if(Gender.value ==='Male'){
    bmr = menBmr();
@@ -87,6 +88,9 @@ function getMealAPIResponse() {
         console.log(lunch);
         console.log(dinner);
         console.log(breakfast);
+        processBreakfast();
+        processLunch();
+        processDinner();
         return;
       }
     });
@@ -98,32 +102,99 @@ function getMealAPIResponse() {
 let lunchname;
 let lunchphoto;
 function processLunch() {
-    lunchname = lunch["title"];
-    lunchphoto = lunch["image"];
+    lunchname = lunch.title;
+    lunchphoto = lunch.image;
+    document.querySelector('.lunchName').innerHTML = lunchname;
+  document.querySelector('.lunchImg').src =lunchphoto;
+  document.querySelector('.lhCalories').innerHTML = finalBmr/3;
+
 }
 let breakfastname;
 let breakfastphoto;
 function processBreakfast() {
-  breakfastname = breakfast["title"];
-  breakfastphoto = breakfast["image"];
+  breakfastname = breakfast.title;
+  breakfastphoto = breakfast.image;
+  document.querySelector('.breakFastName').innerHTML =breakfastname;
+  document.querySelector('.breakFastfImg').src =breakfastphoto;
+  document.querySelector('.bfCalories').innerHTML = finalBmr/3;
 }
 let dinnerName;
 let dinnerphoto;
 function processDinner() {
-  dinnerName = dinner["title"];
-  dinnerphoto = dinner["image"];
+  dinnerName = dinner.title;
+  dinnerphoto = dinner.image;
+  document.querySelector('.dinnerName').innerHTML =dinnerName;
+  document.querySelector('.dinnerImg').src =dinnerphoto;
+  document.querySelector('.dCalories').innerHTML = finalBmr/3;
 }
+ 
+//const lunchBox = document.querySelector(".lunchname");
+//document.getElementById('lunchname').innerHTML = lunchname;
 
-//fetch(mealApi)
-//.then(response=> response.json())
-//.then(data=> console.log(data))
-
-
-//fetch(recipeApi)
-//.then(response2=> response2.json())
-//.then(data2=> console.log(data2))
+//lunchBox.innerHTML = lunchname;
+//console.log(lunchname);
 
 
+
+
+function getRecipe(){
+fetch(recipeApi)
+.then(response2=> response2.json())
+.then(data2=> {
+  recipeData = data2;
+ recipeData.forEach(recipeItem => {
+  let lunchIngredient;
+    let lunchStep;
+    let breakfastIngredient;
+    let breakfastStep;
+    let dinnerIngredient;
+    let dinnerStep;
+    if (breakfastname == recipeItem.title){
+      breakfastIngredient= recipeItem.ingredients;
+      breakfastStep  = recipeItem.steps;
+
+      const bfulList =document.getElementById("recipeList");
+      const bflistItem = document.createElement("li");
+      bflistItem.textContent = breakfastIngredient;
+      bfulList.appendChild(bflistItem);
+
+      const bfulStep =document.getElementById("recipeStep");
+      const bflistStep = document.createElement("li");
+      bflistStep.textContent = breakfastStep;
+      bfulStep.appendChild(bflistStep);
+    }else if (lunchname == recipeItem.title){
+      lunchIngredient= recipeItem.ingredients;
+      lunchStep  = recipeItem.steps;
+
+      const lhulList =document.getElementById("recipeList");
+      const lhlistItem = document.createElement("li");
+      lhlistItem.textContent = lunchIngredient;
+      lhulList.appendChild(lhlistItem);
+
+      const lhulStep =document.getElementById("recipeStep");
+      const lhlistStep = document.createElement("li");
+      lhlistStep.textContent = lunchStep;
+      lhulStep.appendChild(lhlistStep);
+    }else if (dinnerName == recipeItem.title){
+      dinnerIngredient= recipeItem.ingredients;
+      dinnerStep  = recipeItem.steps;
+
+      const dnulList =document.getElementById("recipeList");
+      const dnlistItem = document.createElement("li");
+      dnlistItem.textContent = dinnerIngredient;
+      dnulList.appendChild(dnlistItem);
+
+      const dnulStep =document.getElementById("recipeStep");
+      const dnlistStep = document.createElement("li");
+      dnlistStep.textContent = dinnerStep;
+      dnulStep.appendChild(dnlistStep);
+    }
+    console.log(data2);
+ });
+})
+
+
+}
 
 
 

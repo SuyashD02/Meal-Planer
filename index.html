@@ -39,17 +39,15 @@
     <section id="cards">
         
         <section class="cardContent bf-Meal" >
-
-            
             <section class="foodtitle">
                 <h1>BREAKFAST</h1>
             </section>
             <div class="foodImg">
-                <img class="bfImg" src=" " alt="meal image">
+                <img class="breakFastfImg"alt="meal image">
             </div>
-            <h3 class="bfTitle"> </h3>
+            <h3 class="breakFastName"> </h3>
             <p class="bfCalories"> </p>
-            <button class="recipeBtn">Get recipe</button>
+            <button class="recipeBtn" onclick="getRecipe()">Get recipe</button>
         </section>
         
 
@@ -58,11 +56,11 @@
                 <h1>LUNCH</h1>
             </section>
             <div class="foodImg">
-                <img src="assets/meal img.png" alt="meal image">
+                <img class="lunchImg" alt="meal image">
             </div>
-            <h3>Meal 1</h3>
-            <p>Calories-300</p>
-            <button class="recipeBtn">Get recipe</button>
+            <h3 class ="lunchName"></h3>
+            <p class="lhCalories"></p>
+            <button class="recipeBtn" onclick="getRecipe()">Get recipe</button>
         </section>
         
 
@@ -72,11 +70,11 @@
             </section>
             
             <div class="foodImg">
-                <img src="assets/meal img.png" alt="meal image">
+                <img class="dinnerImg" alt="meal image">
             </div>
-            <h3>Meal 1</h3>
-            <p>Calories-300</p>
-            <button class="recipeBtn">Get recipe</button>
+            <h3 class="dinnerName"></h3>
+            <p class="dCalories"></p>
+            <button class="recipeBtn" onclick="getRecipe()">Get recipe</button>
         </section>
         
     </section>
@@ -89,14 +87,11 @@
             </section>
             <section id="entries">
                 <section class="data">
-                    <h3>Flour</h3>
-                <h3>Granulated Sugar</h3>
-                <h3>Freash Lemon juice</h3>
+                   <ul id="recipeList"></ul>
                 </section>
+
                 <section class="data">
-                    <h3>2 tbsp</h3>
-                <h3>2 tbsp</h3>
-                <h3>2 tbsp</h3>
+                    <ul id="recipeStep"></ul>
                 </section>
             </section>
         </section>
