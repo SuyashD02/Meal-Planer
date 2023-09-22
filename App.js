@@ -198,6 +198,26 @@ function getLunchRecipe() {
 }
 
 function getDinnerRecipe() {
+  if(recipeData == null) { getRecipe();}
+  
+  recipeData.forEach(recipeItem => {
+    console.log("lunchname "+dinnerName);
+    if (dinnerName == recipeItem.title){
+      dinnerIngredient= recipeItem.ingredients;
+      dinnerStep  = recipeItem.steps;
+
+      const diulList =document.getElementById("recipeList");
+      const dilistItem = document.createElement("li");
+      dilistItem.textContent = dinnerIngredient;
+      diulList.appendChild(dilistItem);
+
+      const diulStep =document.getElementById("recipeStep");
+      const dilistStep = document.createElement("li");
+      dilistStep.textContent = dinnerStep;
+      diulStep.appendChild(dilistStep);
+      return;
+      }
+  });
 
 }
 /*
